@@ -1,0 +1,31 @@
+{
+  "name": "namastereact",
+  "version": "1.0.0",
+  "description": "this is a react content",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samarth10000/NamasteReact.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "samarth saxena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samarth10000/NamasteReact/issues"
+  },
+  "homepage": "https://github.com/samarth10000/NamasteReact#readme",
+  "devDependencies": {
+    "parcel": "^2.15.1"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "browserslist": [
+    "last 2 version "
+  ]
+}
