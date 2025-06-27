@@ -1,4 +1,4 @@
-/* #fillthem > div {
+#fillthem > div {
   height: 100px;
   width: 500px;
   color: black;
@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -58,16 +58,20 @@
   height: 50%;
   object-fit: cover;
 }
-
 .restraunt-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Better than using only margin */
+  gap: 20px;
   justify-content: center;
-  /* max-width: 1200px; */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .body {
   padding: 20px;
+}
+
+.filter-btn {
+  margin: 10px;
+  cursor: pointer;
 }
