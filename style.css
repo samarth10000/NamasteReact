@@ -76,3 +76,16 @@
   margin: 10px;
   cursor: pointer;
 }
+
+.submit-btn {
+  margin: 10px;
+  border-radius: 10px;
+  color: black;
+  background-color: orange;
+  cursor: pointer;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+}

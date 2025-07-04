@@ -9,6 +9,10 @@ const Body = () => {
   const listofrestraunts = arr[0];
   const setlistofrestraunt = arr[1];
 
+  const [searchtext, setsearchtext] = useState("");
+  // whenever state variables update , react triggers a reconciliation cycle(re-renders the component)
+  console.log("Body rendered");
+
   // super powerful state local state variable
   // const [listofrestraunts, setlistofrestraunt] = useState(resobj);
 
@@ -18,17 +22,37 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.2961468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139&lng=77.2090&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     console.log(json);
-    setlistofrestraunt(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
-    );
+
+    // setlistofrestraunt(json.data.cards[4].card.card.brands);
   };
   return (
     <div className="body">
       <div className="filter">
+        <div className="Search">
+          <input
+            type="text"
+            className="Search-Box"
+            value={searchtext}
+            onChange={(e) => {
+              setsearchtext(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              const filteredRestraunt = listofrestraunts.filter((res) =>
+                res.info.name.toLowerCase().includes(searchtext.toLowerCase())
+              );
+              setlistofrestraunt(filteredRestraunt);
+            }}
+          >
+            Search
+          </button>
+        </div>
+
         <button
           className="filter-btn "
           onClick={() => {
