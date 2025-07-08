@@ -15,15 +15,15 @@ const Header = () => {
           <li>Contact us</li>
           <li>Cart</li>
         </ul>
-        <button
-          className="submit-btn"
-          onClick={() => {
-            button === "login" ? SetButton("logout") : SetButton("login");
-          }}
-        >
-          {button}{" "}
-        </button>
       </div>
+      <button
+        className="submit-btn"
+        onClick={() => {
+          button === "login" ? SetButton("logout") : SetButton("login");
+        }}
+      >
+        {button}{" "}
+      </button>
     </div>
   );
 };

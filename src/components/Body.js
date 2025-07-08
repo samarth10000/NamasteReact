@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
-import RestrauntCard from "./RestrauntCard";
-import resobj from "../../utils/mockData";
+import RestrauntCard from "../components/RestrauntCard";
+
 import ShimmerUI from "./ShimmerUI";
 
 const Body = () => {
   //we can see this state as a array destructuring , this syntax and second one works the same , here just showing what is shappening inside it
-  const arr = useState(resobj);
 
-  const listofrestraunts = arr[0];
-  const setlistofrestraunt = arr[1];
+  // const arr = useState(resobj);
 
-  const [searchtext, setsearchtext] = useState("");
+  // const listofrestraunts = arr[0];
+  // const setlistofrestraunt = arr[1];
+
   // whenever state variables update , react triggers a reconciliation cycle(re-renders the component)
 
   // super powerful state local state variable
-  // const [listofrestraunts, setlistofrestraunt] = useState(resobj);
+  const [listofrestraunts, setlistofrestraunt] = useState([]);
+  const [filteredRestaurant, setFilteredRestraunt] = useState([]);
+
+  const [searchtext, setsearchtext] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -25,15 +28,17 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(json);
 
-    // setlistofrestraunt(json.data.cards[2].data.data.cards);
+    const restaurants =
+      json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || [];
+
+    setlistofrestraunt(restaurants);
+    setFilteredRestraunt(restaurants);
   };
-
-  if (listofrestraunts.length === 0) {
-    return <ShimmerUI />;
-  }
-  return (
+  return listofrestraunts.length === 0 ? (
+    <ShimmerUI />
+  ) : (
     <div className="body">
       <div className="filter">
         <div className="Search">
@@ -47,10 +52,10 @@ const Body = () => {
           />
           <button
             onClick={() => {
-              const filteredRestraunt = listofrestraunts.filter((res) =>
+              const filtered = listofrestraunts.filter((res) =>
                 res.info.name.toLowerCase().includes(searchtext.toLowerCase())
               );
-              setlistofrestraunt(filteredRestraunt);
+              setFilteredRestraunt(filtered); // ✅ Correct
             }}
           >
             Search
@@ -61,16 +66,16 @@ const Body = () => {
           className="filter-btn "
           onClick={() => {
             const filteredList = listofrestraunts.filter(
-              (res) => res.info.avgRating > 4
+              (res) => res?.info?.avgRating > 4
             );
-            setlistofrestraunt(filteredList);
+            setFilteredRestraunt(filteredList);
           }}
         >
           Top Rated Restraunt
         </button>
       </div>
-      <div className="restraunt-container">
-        {listofrestraunts.map((restraunt) => (
+      <div className="restaurant-container">
+        {filteredRestaurant.map((restraunt) => (
           <RestrauntCard key={restraunt.info.id} resdata={restraunt} />
         ))}
       </div>
