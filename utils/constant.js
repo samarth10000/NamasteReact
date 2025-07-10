@@ -3,3 +3,6 @@ export const CDN_URL =
 
 export const LOGO_URL =
   "https://static.vecteezy.com/system/resources/previews/010/628/614/original/food-order-logo-mobile-food-logo-online-food-delivery-logo-vector.jpg";
+
+export const MENU_API =
+  "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.479391&lng=80.298165&restaurantId=316613&query=Roll";
