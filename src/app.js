@@ -31,22 +31,18 @@ const Approuter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
-        errorElement: <Error />,
       },
       {
         path: "/ContactUs",
         element: <ContactUs />,
-        errorElement: <Error />,
       },
       {
         path: "/CartItems",
         element: <Cart />,
-        errorElement: <Error />,
       },
       {
-        path: "/restaurant/:resid",
+        path: "/restaurants/:resId",
         element: <RestaurantPage />,
-        errorElement: <Error />,
       },
     ],
     errorElement: <Error />,
