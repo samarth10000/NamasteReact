@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
 import { MENU_API } from "../../utils/constant";
 import { useParams } from "react-router";
-import RestaurantMenuPage from "./RestaurantMenuPage";
+import RestaurantMenuCard from "./RestaurantMenuCard";
 
 const RestaurantPage = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -34,11 +34,13 @@ const RestaurantPage = () => {
     .filter(Boolean);
 
   return (
-    <div>
-      <h1>{resInfo.cards[2]?.card?.card?.info.name}</h1>
+    <div style={{ fontFamily: "gilroy, arial, Helvetica Neue, sans-serif" }}>
+      <h1 className="ms-4 mt-2 mb-4 fw-bold">
+        {resInfo.cards[2]?.card?.card?.info.name}
+      </h1>
       {/* card */}
 
-      <RestaurantMenuPage />
+      <RestaurantMenuCard />
 
       {/* Deals For you */}
       {/* search bar for dishes */}
@@ -53,15 +55,20 @@ const RestaurantPage = () => {
       {/* Non Veg Pizza (11) */}
       {/* Pasta (10) */}
       {/* Drinks & Desserts */}
-      <p>
-        {resInfo.cards[2]?.card?.card?.info.cuisines?.join(",")} -
-        {resInfo.cards[2]?.card?.card?.info.costForTwoMessage}
-      </p>
-      <h2>Menu</h2>
-      <ul>
+
+      <h2
+        className="ms-4 mt-2 mb-4 fw-bold"
+        style={{ fontFamily: "gilroy, arial, Helvetica Neue, sans-serif" }}
+      >
+        Menu
+      </h2>
+      <ul
+        className="ms-4 mt-2 mb-4 fw-bold"
+        style={{ fontFamily: "gilroy, arial, Helvetica Neue, sans-serif" }}
+      >
         {itemCards.map((item, index) => (
           <li key={item.card.info.id + "-" + index}>
-            {item.card.info.name} - ₹
+            {item.card.info.name} ₹
             {(item.card.info.price || item.card.info.defaultPrice) / 100}
           </li>
         ))}

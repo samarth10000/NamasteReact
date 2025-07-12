@@ -1,10 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* ===== Core Styles ===== */
-
-body {
+.body {
   padding: 20px;
   font-family: Arial, sans-serif;
 }
