@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import RestrauntCard from "../components/RestrauntCard";
-
+import { Link } from "react-router-dom";
 import ShimmerUI from "./ShimmerUI";
 
 const Body = () => {
@@ -76,7 +76,10 @@ const Body = () => {
       </div>
       <div className="restaurant-container">
         {filteredRestaurant.map((restraunt) => (
-          <RestrauntCard key={restraunt.info.id} resdata={restraunt} />
+          <Link to={/restaurants/ + restraunt.info.id} key={restraunt.info.id}>
+            {" "}
+            <RestrauntCard key={restraunt.info.id} resdata={restraunt} />
+          </Link>
         ))}
       </div>
     </div>

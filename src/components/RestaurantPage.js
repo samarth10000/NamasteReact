@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
 import { MENU_API } from "../../utils/constant";
 import { useParams } from "react-router";
+import RestaurantMenuPage from "./RestaurantMenuPage";
 
 const RestaurantPage = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -12,7 +13,9 @@ const RestaurantPage = () => {
   }, []);
 
   const FetchMenu = async () => {
-    const Data = await fetch(MENU_API + resId);
+    const Data = await fetch(
+      MENU_API + resId + "&query=Roll&source=collection"
+    );
     const json = await Data.json();
     setResInfo(json.data);
   };
@@ -20,9 +23,6 @@ const RestaurantPage = () => {
   if (resInfo === null) {
     return <ShimmerUI />;
   }
-
-  const { name, cuisines, costForTwoMessage } =
-    resInfo.cards[2]?.card?.card?.info || {};
 
   //  Collect all itemCards from REGULAR menu
   const menuSections =
@@ -35,11 +35,28 @@ const RestaurantPage = () => {
 
   return (
     <div>
-      <h1>{name}</h1>
-      <p>
-        {cuisines?.join(", ")} - {costForTwoMessage}
-      </p>
+      <h1>{resInfo.cards[2]?.card?.card?.info.name}</h1>
+      {/* card */}
 
+      <RestaurantMenuPage />
+
+      {/* Deals For you */}
+      {/* search bar for dishes */}
+      {/* three filter button veg button non veg button Bestseller Button */}
+      {/* Want to repeat section */}
+      {/* {top picks section} */}
+      {/* {recommended section } */}
+      {/* Flash Sale Pizzas */}
+      {/* All-New Juicylicious Pizzas & More! section AND its sub sections */}
+      {/* Veg Pizza (14) */}
+      {/* Buy 1 Pizza Get 2 Sides, 1 Pepsi Free(4) */}
+      {/* Non Veg Pizza (11) */}
+      {/* Pasta (10) */}
+      {/* Drinks & Desserts */}
+      <p>
+        {resInfo.cards[2]?.card?.card?.info.cuisines?.join(",")} -
+        {resInfo.cards[2]?.card?.card?.info.costForTwoMessage}
+      </p>
       <h2>Menu</h2>
       <ul>
         {itemCards.map((item, index) => (

@@ -8,6 +8,7 @@ import ContactUs from "./components/ContactUs.js";
 import Cart from "./components/Cart.js";
 import Error from "./components/Error.js";
 import RestaurantPage from "./components/RestaurantPage.js";
+import "./style.css";
 
 const AppLayout = () => {
   return (
