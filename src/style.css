@@ -378,3 +378,320 @@
 .home-button:hover {
   background-color: #2563eb;
 }
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.menu-title {
+  font-size: 16px;
+  color: #333;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+}
+
+.menu-title span {
+  font-size: 20px;
+  margin: 0 5px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 12px 20px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: transparent;
+  color: #333;
+}
+
+.search-icon {
+  font-size: 16px;
+  color: #555;
+  margin-left: 10px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.veg-icon,
+.nonveg-icon {
+  width: 18px;
+  height: 18px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+.veg-icon {
+  border-color: green;
+}
+
+.veg-dot {
+  width: 8px;
+  height: 8px;
+  background-color: green;
+  border-radius: 50%;
+}
+
+.nonveg-icon {
+  border-color: red;
+}
+
+.nonveg-dot {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid red;
+}
+
+.bestseller-btn {
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+
+.restaurantMenu-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.menu-title {
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.menu-title span {
+  font-size: 22px;
+  color: #888;
+  margin: 0 6px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 12px 20px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.search-icon {
+  font-size: 16px;
+  color: #555;
+  margin-left: 10px;
+}
+
+.dish-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 30px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.dish-list li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 16px;
+  color: #222;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.veg-icon,
+.nonveg-icon {
+  width: 18px;
+  height: 18px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+.veg-icon {
+  border-color: green;
+}
+
+.veg-dot {
+  width: 8px;
+  height: 8px;
+  background-color: green;
+  border-radius: 50%;
+}
+
+.nonveg-icon {
+  border-color: red;
+}
+
+.nonveg-dot {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid red;
+}
+
+.bestseller-btn {
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+
+.search-bar button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  outline: none;
+}
+
+.menu-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.menu-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+  border-radius: 25px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.search-icon {
+  font-size: 20px;
+}
+
+.dish-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.dish-card {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  gap: 20px;
+}
+
+.dish-details {
+  flex: 1;
+}
+
+.dish-description {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
+
+.dish-price {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.dish-image-container {
+  flex-shrink: 0;
+  width: 130px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dish-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}

@@ -3,6 +3,8 @@ import ShimmerUI from "./ShimmerUI";
 import { MENU_API } from "../../utils/constant";
 import { useParams } from "react-router";
 import RestaurantMenuCard from "./RestaurantMenuCard";
+import SearchBarMenu from "./SearchBarMenu";
+import { CDN_URL } from "../../utils/constant";
 
 const RestaurantPage = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -35,15 +37,19 @@ const RestaurantPage = () => {
 
   return (
     <div style={{ fontFamily: "gilroy, arial, Helvetica Neue, sans-serif" }}>
+      {" "}
+      <img
+        className="restaurantMenu-image"
+        src={CDN_URL + resInfo.cards[2]?.card?.card?.info?.cloudinaryImageId}
+        alt={resInfo.cards[2]?.card?.card?.info?.name}
+      />
       <h1 className="ms-4 mt-2 mb-4 fw-bold">
         {resInfo.cards[2]?.card?.card?.info.name}
       </h1>
       {/* card */}
-
       <RestaurantMenuCard />
-
-      {/* Deals For you */}
       {/* search bar for dishes */}
+      <SearchBarMenu />
       {/* three filter button veg button non veg button Bestseller Button */}
       {/* Want to repeat section */}
       {/* {top picks section} */}
@@ -55,14 +61,7 @@ const RestaurantPage = () => {
       {/* Non Veg Pizza (11) */}
       {/* Pasta (10) */}
       {/* Drinks & Desserts */}
-
-      <h2
-        className="ms-4 mt-2 mb-4 fw-bold"
-        style={{ fontFamily: "gilroy, arial, Helvetica Neue, sans-serif" }}
-      >
-        Menu
-      </h2>
-      <ul
+      {/* <ul
         className="ms-4 mt-2 mb-4 fw-bold"
         style={{ fontFamily: "gilroy, arial, Helvetica Neue, sans-serif" }}
       >
@@ -72,7 +71,7 @@ const RestaurantPage = () => {
             {(item.card.info.price || item.card.info.defaultPrice) / 100}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
