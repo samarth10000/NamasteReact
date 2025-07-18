@@ -5,42 +5,56 @@ class UserClass extends React.Component {
 
     // In that Time when dont have the functionality of hooks like useState() then we created our own this
     this.state = {
-      count: 0,
-      count2: 0,
-      count3: 0,
-      count4: 0,
+      userInfo: {
+        name: "Dummy",
+        Location: "Default",
+      },
     };
     console.log(this.props.name + "child constructor ");
   }
 
-  componentDidMount() {
-    console.log(this.props.name + "Child Component Did Mount");
+  async componentDidMount() {
+    const data = await fetch("https://api.github.com/users/Samarth");
+    const json = await data.json();
+    const Response = json;
+    console.log(Response);
+
+    this.setState({
+      userInfo: Response,
+    });
+    // console.log(this.props.name + "Child Component Did Mount");
   }
+  componentDidUpdate() {
+    console.log("Component Did Update");
+  }
+  //Mounting means showing it on the ui and unmount means disabling from the ui
+  componentWillUnmount() {}
   render() {
-    console.log(this.props.name + "child render");
+    const { name, location, avatar_url } = this.state.userInfo;
     return (
-      <div className="user-card" style={{ border: "2px Solid black" }}>
-        <h2>Name : {this.props.name}</h2>
-        <h2>Count - {this.state.count}</h2>
-
-        {/* // you have just sent count and count2 over there react will not touch
-        the value of others it is just touch the value which is passed  */}
-
-        <button
-          onClick={() => {
-            this.setState({
-              count: this.state.count + 1,
-              count2: this.state.count + 1,
-            });
-          }}
-        >
-          Count
-        </button>
-        <h3>Location : {this.props.location}</h3>
+      <div className="user-card">
+        <img src={avatar_url} alt="" />
+        <h2>Name : {name}</h2>
+        <h3>Location : {location}</h3>
         <h3>Contact - Samarthsaxena2september2001@gmail.com</h3>
       </div>
     );
   }
 }
 
+//Notes -   // you have just sent count and count2 over there react will not touch
+// the value of others it is just touch the value which is passed
+
+//    Very IMPORTANT
+//    Mounting
+//    Constructor (Dummy)
+//     Render (Dummy)
+//    <HTML Dummy >
+//    Component DId Mount
+//    <Api Call in Did Mount>
+//    <This.setState> state variable is updated
+//     UPDATE
+//     render(Api data)
+//     <HTML (new Api data>)
+//     Component did Update
 export default UserClass;
