@@ -1,18 +1,28 @@
 //About Section
-
 import UserClass from "./UserClass";
-const About = () => {
-  return (
-    <div>
-      <h1>About</h1>
+import { Component } from "react";
 
-      <UserClass
-        name={"Samarth Saxena (Class Based Component )"}
-        location={"Aligarh Sir Syed Nagar "}
-      />
-    </div>
-  );
-};
+class About extends Component {
+  constructor(props) {
+    super(props);
+    console.log("parent Constructor");
+  }
+
+  componentDidMount() {
+    console.log("parent Component did Mount");
+  }
+  render() {
+    console.log("parent render ");
+    return (
+      <div>
+        <h1>About</h1>
+
+        <UserClass name={"First Child"} location={"Aligarh Sir Syed Nagar "} />
+        <UserClass name={"Second Child"} location={"Aligarh Sir Syed Nagar "} />
+      </div>
+    );
+  }
+}
 
 export default About;
 // import React from "react";
