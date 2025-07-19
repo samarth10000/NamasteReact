@@ -45,16 +45,5 @@ class UserClass extends React.Component {
 //Notes -   // you have just sent count and count2 over there react will not touch
 // the value of others it is just touch the value which is passed
 
-//    Very IMPORTANT
-//    Mounting
-//    Constructor (Dummy)
-//     Render (Dummy)
-//    <HTML Dummy >
-//    Component DId Mount
-//    <Api Call in Did Mount>
-//    <This.setState> state variable is updated
-//     UPDATE
-//     render(Api data)
-//     <HTML (new Api data>)
-//     Component did Update
+
 export default UserClass;
