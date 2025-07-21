@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
-import { MENU_API } from "../../utils/constant";
+import { CDN_URL } from "../../utils/constant";
 import { useParams } from "react-router";
 import RestaurantMenuCard from "./RestaurantMenuCard";
 import SearchBarMenu from "./SearchBarMenu";
-import { CDN_URL } from "../../utils/constant";
+import useRestaurantmenu from "../../utils/useRestaurantmenu";
 
 const RestaurantPage = () => {
-  const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
 
-  useEffect(() => {
-    FetchMenu();
-  }, []);
-
-  const FetchMenu = async () => {
-    const Data = await fetch(
-      MENU_API + resId + "&query=Roll&source=collection"
-    );
-    const json = await Data.json();
-    setResInfo(json.data);
-  };
+  const resInfo = useRestaurantmenu(resId);
 
   if (resInfo === null) {
     return <ShimmerUI />;

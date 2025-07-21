@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import RestrauntCard from "../components/RestrauntCard";
 import { Link } from "react-router-dom";
 import ShimmerUI from "./ShimmerUI";
+import useOnlineStatus from "../../utils/useOnlineStatus";
+import OfflineMessage from "../components/OfflineMessage";
 
 const Body = () => {
   //we can see this state as a array destructuring , this syntax and second one works the same , here just showing what is shappening inside it
@@ -36,6 +38,11 @@ const Body = () => {
     setlistofrestraunt(restaurants);
     setFilteredRestraunt(restaurants);
   };
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) {
+    return <OfflineMessage />;
+  }
   return listofrestraunts.length === 0 ? (
     <ShimmerUI />
   ) : (
