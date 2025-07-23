@@ -48,16 +48,18 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
-        <div className="Search">
+        <div className="p-4">
           <input
             type="text"
-            className="Search-Box"
+            className="px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-orange-400"
+            placeholder="Search Your Food Here"
             value={searchtext}
             onChange={(e) => {
               setsearchtext(e.target.value);
             }}
           />
           <button
+            className="bg-orange-500 text-white px-4 py-2 rounded-r-md hover:bg-orange-600 transition"
             onClick={() => {
               const filtered = listofrestraunts.filter((res) =>
                 res.info.name.toLowerCase().includes(searchtext.toLowerCase())
@@ -67,21 +69,20 @@ const Body = () => {
           >
             Search
           </button>
+          <button
+            className="bg-orange-500 text-white px-4 py-2 rounded-r-md hover:bg-orange-600 ml-2 transition rounded-lg"
+            onClick={() => {
+              const filteredList = listofrestraunts.filter(
+                (res) => res?.info?.avgRating > 4
+              );
+              setFilteredRestraunt(filteredList);
+            }}
+          >
+            Top Rated Restraunt
+          </button>
         </div>
-
-        <button
-          className="filter-btn "
-          onClick={() => {
-            const filteredList = listofrestraunts.filter(
-              (res) => res?.info?.avgRating > 4
-            );
-            setFilteredRestraunt(filteredList);
-          }}
-        >
-          Top Rated Restraunt
-        </button>
       </div>
-      <div className="restaurant-container">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
         {filteredRestaurant.map((restraunt) => (
           <Link to={/restaurants/ + restraunt.info.id} key={restraunt.info.id}>
             {" "}

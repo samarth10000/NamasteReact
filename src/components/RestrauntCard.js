@@ -7,14 +7,21 @@ const RestaurantCard = (props) => {
     resdata.info;
 
   return (
-    <div className="res-card">
-      <img className="res-image" src={CDN_URL + cloudinaryImageId} alt={name} />
-      <div className="res-details">
-        <h3>{name}</h3>
-        <p>{cuisines.join(", ")}</p>
-        <p>{avgRating} stars</p>
-
-        <p>{costForTwo}</p>
+    <div className="w-[300px] bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+      <img
+        className="w-full h-[180px] object-cover"
+        src={CDN_URL + cloudinaryImageId}
+        alt={name}
+      />
+      <div className="p-4 space-y-1">
+        <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
+        <p className="text-sm text-gray-500 line-clamp-1">
+          {cuisines.join(", ")}
+        </p>
+        <div className="flex items-center justify-between text-sm text-gray-700">
+          <span className="font-medium">{avgRating}⭐</span>
+          <span>{costForTwo}</span>
+        </div>
       </div>
     </div>
   );
