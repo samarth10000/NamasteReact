@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestrauntCard from "../components/RestrauntCard";
+import RestrauntCard, { Withpromotedlabel } from "../components/RestrauntCard";
 import { Link } from "react-router-dom";
 import ShimmerUI from "./ShimmerUI";
 import useOnlineStatus from "../../utils/useOnlineStatus";
@@ -20,6 +20,7 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestraunt] = useState([]);
 
   const [searchtext, setsearchtext] = useState("");
+  const PromotedlabelCard = Withpromotedlabel(RestrauntCard);
 
   useEffect(() => {
     fetchData();
@@ -27,14 +28,17 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=27.875684523971504&lng=78.06875076144934&carousel=true&third_party_vendor=1"
     );
     const json = await data.json();
 
-    const restaurants =
-      json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants || [];
+    const restaurantCard = json?.data?.cards.find(
+      (card) => card.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
 
+    const restaurants =
+      restaurantCard?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
+      [];
     setlistofrestraunt(restaurants);
     setFilteredRestraunt(restaurants);
   };
@@ -83,10 +87,19 @@ const Body = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6">
-        {filteredRestaurant.map((restraunt) => (
-          <Link to={/restaurants/ + restraunt.info.id} key={restraunt.info.id}>
-            {" "}
-            <RestrauntCard key={restraunt.info.id} resdata={restraunt} />
+        {filteredRestaurant.map((restaurant) => (
+          <Link
+            to={/restaurants/ + restaurant.info.id}
+            key={restaurant.info.id}
+          >
+            {restaurant?.info?.availability?.opened ? (
+              <PromotedlabelCard
+                key={restaurant.info.id}
+                resdata={restaurant}
+              />
+            ) : (
+              <RestrauntCard key={restaurant.info.id} resdata={restaurant} />
+            )}
           </Link>
         ))}
       </div>

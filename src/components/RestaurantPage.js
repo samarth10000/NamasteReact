@@ -39,28 +39,6 @@ const RestaurantPage = () => {
       <RestaurantMenuCard />
       {/* search bar for dishes */}
       <SearchBarMenu />
-      {/* three filter button veg button non veg button Bestseller Button */}
-      {/* Want to repeat section */}
-      {/* {top picks section} */}
-      {/* {recommended section } */}
-      {/* Flash Sale Pizzas */}
-      {/* All-New Juicylicious Pizzas & More! section AND its sub sections */}
-      {/* Veg Pizza (14) */}
-      {/* Buy 1 Pizza Get 2 Sides, 1 Pepsi Free(4) */}
-      {/* Non Veg Pizza (11) */}
-      {/* Pasta (10) */}
-      {/* Drinks & Desserts */}
-      {/* <ul
-        className="ms-4 mt-2 mb-4 fw-bold"
-        style={{ fontFamily: "gilroy, arial, Helvetica Neue, sans-serif" }}
-      >
-        {itemCards.map((item, index) => (
-          <li key={item.card.info.id + "-" + index}>
-            {item.card.info.name} ₹
-            {(item.card.info.price || item.card.info.defaultPrice) / 100}
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 };

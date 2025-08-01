@@ -3,6 +3,8 @@ import { CDN_URL } from "../../utils/constant";
 const RestaurantCard = (props) => {
   const { resdata } = props;
 
+  if (!resdata || !resdata.info) return null; // or show a loading/error component
+
   const { name, cuisines, avgRating, costForTwo, cloudinaryImageId } =
     resdata.info;
 
@@ -25,6 +27,17 @@ const RestaurantCard = (props) => {
       </div>
     </div>
   );
+};
+
+export const Withpromotedlabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label>Open ! Order Something </label>
+        <RestaurantCard {...props} resdata={props.resdata} />
+      </div>
+    );
+  };
 };
 
 export default RestaurantCard;
