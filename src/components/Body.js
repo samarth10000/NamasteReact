@@ -28,7 +28,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=27.875684523971504&lng=78.06875076144934&carousel=true&third_party_vendor=1"
+      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=27.1665387&lng=78.0281004&carousel=true&third_party_vendor=1"
     );
     const json = await data.json();
 
@@ -39,6 +39,7 @@ const Body = () => {
     const restaurants =
       restaurantCard?.card?.card?.gridElements?.infoWithStyle?.restaurants ||
       [];
+    console.log(restaurants);
     setlistofrestraunt(restaurants);
     setFilteredRestraunt(restaurants);
   };

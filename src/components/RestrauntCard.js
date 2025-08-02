@@ -33,7 +33,9 @@ export const Withpromotedlabel = (RestaurantCard) => {
   return (props) => {
     return (
       <div>
-        <label>Open ! Order Something </label>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+          Open ! Order Something{" "}
+        </label>
         <RestaurantCard {...props} resdata={props.resdata} />
       </div>
     );

@@ -3,28 +3,33 @@ import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { MENU_API } from "../../utils/constant";
 import ShimmerUI from "./ShimmerUI";
+import useRestaurantmenu from "../../utils/useRestaurantmenu";
 
-const RestaurantMenuCard = () => {
+const RestaurantMenu = () => {
   const { resId } = useParams();
-  const [resinfo, setResInfo] = useState({});
+  const resInfo = useRestaurantmenu(resId);
 
-  useEffect(() => {
-    fetchRestaurantInfo();
-  }, []);
+  const info = resInfo?.cards?.[0]?.card?.card?.info;
+  if (!info) return <ShimmerUI />;
 
-  const fetchRestaurantInfo = async () => {
-    const Data = await fetch(
-      MENU_API + resId + "&query=Roll&source=collection"
-    );
-    const json = await Data.json();
-    setResInfo(json.data);
-  };
-  if (!resinfo?.cards || resinfo.cards.length < 3) {
-    return <ShimmerUI />; // or null or a shimmer
-  }
+  const {
+    cuisines,
+    costForTwoMessage,
+    avgRatingString,
+    totalRatingsString,
+    areaName,
+    slugs,
+  } = info;
+
+  const { itemCards } =
+    resInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card
+      ?.card || {};
+
+  console.log(itemCards);
+
   return (
     <div
-      className="mx-auto my-5 px-5 py-3  shadow"
+      className="mx-auto my-5 px-5 py-3 shadow"
       style={{ maxWidth: "calc(100% - 200px)", borderRadius: "30px" }}
     >
       <div
@@ -38,24 +43,19 @@ const RestaurantMenuCard = () => {
             style={{ marginTop: "8px", width: "25px", height: "25px" }}
           />
         </div>
-        <div className="rating m-2  fw-bold">
-          {resinfo?.cards?.[2]?.card?.card?.info?.avgRatingString ||
-            "Loading..."}{" "}
-          +{" "}
-          {resinfo?.cards?.[2]?.card?.card?.info?.totalRatingsString ||
-            "Loading..."}
+        <div className="rating m-2 fw-bold">
+          {avgRatingString || "Loading..."} +{" "}
+          {totalRatingsString || "Loading..."}
         </div>
-        <div className="costfortwo m-2  fw-bold">
-          {" "}
-          {resinfo?.cards?.[2]?.card?.card?.info?.costForTwoMessage ||
-            "Loading..."}
+        <div className="costfortwo m-2 fw-bold">
+          {costForTwoMessage || "Loading..."}
         </div>
       </div>
+
       <div
         className="address-time"
         style={{ display: "flex", alignItems: "center", gap: "12px" }}
       >
-        {/* Left vertical line with circles */}
         <div
           style={{
             display: "flex",
@@ -72,11 +72,7 @@ const RestaurantMenuCard = () => {
             }}
           ></div>
           <div
-            style={{
-              width: "2px",
-              height: "25px",
-              backgroundColor: "gray",
-            }}
+            style={{ width: "2px", height: "25px", backgroundColor: "gray" }}
           ></div>
           <div
             style={{
@@ -88,17 +84,14 @@ const RestaurantMenuCard = () => {
           ></div>
         </div>
 
-        {/* Right text content */}
         <div className="card-body">
           <h5
-            className="card-header-text  fw-bold"
+            className="card-header-text fw-bold"
             style={{ color: "darkorange" }}
           >
-            {resinfo.cards[2]?.card?.card?.info?.cuisines?.join(", ")}
+            {cuisines?.join(", ") || "Loading cuisines..."}
           </h5>
-          <p className="card-text">
-            Outlet - {resinfo.cards[2]?.card?.card?.info?.areaName}
-          </p>
+          <p className="card-text">Outlet - {areaName}</p>
         </div>
       </div>
 
@@ -106,10 +99,10 @@ const RestaurantMenuCard = () => {
         className="Restaurant-cardBottomText t fw-bold"
         style={{ color: "black" }}
       >
-        {resinfo?.cards[2]?.card?.card?.info?.slugs?.restaurant}
+        {slugs?.restaurant}
       </div>
     </div>
   );
 };
 
-export default RestaurantMenuCard;
+export default RestaurantMenu;
