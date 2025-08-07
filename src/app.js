@@ -7,7 +7,6 @@ import Body from "./components/Body.js";
 import ContactUs from "./components/ContactUs.js";
 import Cart from "./components/Cart.js";
 import Error from "./components/Error.js";
-import RestaurantPage from "./components/RestaurantPage.js";
 
 //lazy loading
 const Grocery = lazy(() => import("./components/Grocery.js"));
@@ -48,10 +47,7 @@ const Approuter = createBrowserRouter([
         path: "/CartItems",
         element: <Cart />,
       },
-      {
-        path: "/restaurants/:resId",
-        element: <RestaurantPage />,
-      },
+
       {
         path: "/Grocery",
         element: (

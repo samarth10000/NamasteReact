@@ -6,7 +6,7 @@ const RestaurantCard = (props) => {
   if (!resdata || !resdata.info) return null; // or show a loading/error component
 
   const { name, cuisines, avgRating, costForTwo, cloudinaryImageId } =
-    resdata.info;
+    resdata?.info;
 
   return (
     <div className="w-[300px] bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">

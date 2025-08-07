@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import ShimmerUI from "./ShimmerUI";
@@ -10,13 +10,13 @@ const RestaurantMenu = () => {
   if (resInfo === null) return <ShimmerUI />;
 
   const { name, cuisines, costForTwoMessage } =
-    resInfo?.cards[2]?.card?.card?.info;
+    resInfo?.cards[0]?.card?.card?.info;
 
   const { itemCards } =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
       ?.card || {};
 
-  console.log(itemCards);
+  console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
   return (
     <div className="menu">

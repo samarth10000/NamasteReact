@@ -5,4 +5,4 @@ export const LOGO_URL =
   "https://static.vecteezy.com/system/resources/previews/010/628/614/original/food-order-logo-mobile-food-logo-online-food-delivery-logo-vector.jpg";
 
 export const MENU_API =
-  "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.1665387&lng=78.0281004&restaurantId=";
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=";
