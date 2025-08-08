@@ -21,7 +21,7 @@ const Header = () => {
             alt="App Logo"
           />
           <span className="text-2xl font-extrabold text-orange-500 tracking-wide">
-            SAMARTH ' <span className="text-gray-800">FOOD</span>
+            SAMARTH <span className="text-gray-800">FOOD</span>
           </span>
         </div>
 

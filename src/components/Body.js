@@ -32,15 +32,18 @@ const Body = () => {
     );
 
     const json = await data.json();
+    console.log("API Response:", json); // ✅ ADD THIS
 
-    // Optional Chaining
-    setListOfRestraunt(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    const restaurants =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+
+    console.log("Extracted restaurants:", restaurants); // ✅ ADD THIS
+
+    setListOfRestraunt(restaurants);
+    setFilteredRestaurant(restaurants);
   };
+
   const onlineStatus = useOnlineStatus();
 
   if (onlineStatus === false) {
