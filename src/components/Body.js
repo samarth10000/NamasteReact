@@ -28,20 +28,24 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=27.875684523971504&lng=78.06875076144934&carousel=true&third_party_vendor=1"
+      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=27.9135016&lng=78.0781901&carousel=true&third_party_vendor=1"
     );
 
     const json = await data.json();
-    console.log("API Response:", json); // ✅ ADD THIS
+    console.log("API Response:", json);
 
     const restaurants =
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
+        ?.restaurants || [];
 
     console.log("Extracted restaurants:", restaurants); // ✅ ADD THIS
 
-    setListOfRestraunt(restaurants);
-    setFilteredRestaurant(restaurants);
+    setListOfRestraunt(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurant(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   const onlineStatus = useOnlineStatus();
@@ -102,12 +106,9 @@ const Body = () => {
             to={"/restaurants/" + restaurant?.info.id}
           >
             {restaurant?.info?.availability?.opened ? (
-              <PromotedlabelCard
-                // key={restaurant.info.id}
-                resdata={restaurant?.info}
-              />
+              <PromotedlabelCard resdata={restaurant} />
             ) : (
-              <RestrauntCard resdata={restaurant?.info} />
+              <RestrauntCard resdata={restaurant} />
             )}
           </Link>
         ))}

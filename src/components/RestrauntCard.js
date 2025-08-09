@@ -30,16 +30,13 @@ const RestaurantCard = (props) => {
 };
 
 export const Withpromotedlabel = (RestaurantCard) => {
-  return (props) => {
-    return (
-      <div>
-        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
-          Open ! Order Something{" "}
-        </label>
-        <RestaurantCard {...props} resdata={props.resdata} />
-      </div>
-    );
-  };
+  return (props) => (
+    <div className="relative inline-block">
+      <span className="absolute top-2 left-2 bg-black text-white px-2 py-1 text-xs rounded-lg z-10">
+        Open! Order Something
+      </span>
+      <RestaurantCard {...props} />
+    </div>
+  );
 };
-
 export default RestaurantCard;
