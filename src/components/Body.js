@@ -35,17 +35,13 @@ const Body = () => {
     console.log("API Response:", json);
 
     const restaurants =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants || [];
 
     console.log("Extracted restaurants:", restaurants); // ✅ ADD THIS
 
-    setListOfRestraunt(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    setListOfRestraunt(restaurants);
+    setFilteredRestaurant(restaurants);
   };
 
   const onlineStatus = useOnlineStatus();

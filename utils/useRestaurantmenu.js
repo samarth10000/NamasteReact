@@ -9,10 +9,9 @@ const useRestaurantmenu = (resId) => {
   }, []);
 
   const fetchdata = async () => {
-    const data = await fetch(
-      MENU_API + resId + "&query=Roll&source=collection"
-    );
+    const data = await fetch(MENU_API + resId + "&submitAction=ENTER");
     const json = await data.json();
+    console.log(json.data.cards);
     setResInfo(json.data);
   };
   return resInfo;
