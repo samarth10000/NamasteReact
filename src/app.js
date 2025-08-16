@@ -41,7 +41,7 @@ const Approuter = createBrowserRouter([
         ),
       },
       {
-        path: "/restaurants/:resid",
+        path: "/restaurants/:resId",
         element: <ResMenuCard />,
       },
       {

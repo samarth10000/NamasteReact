@@ -4,4 +4,5 @@ export const CDN_URL =
 export const LOGO_URL =
   "https://static.vecteezy.com/system/resources/previews/010/628/614/original/food-order-logo-mobile-food-logo-online-food-delivery-logo-vector.jpg";
 
-export const MENU_API = `https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.9135016&lng=78.0781901&restaurantId=448727&submitAction=ENTER`;
+export const MENU_API =
+  "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.9135016&lng=78.0781901&restaurantId=448727&submitAction=ENTER";

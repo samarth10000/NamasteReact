@@ -6,28 +6,44 @@ import { MENU_API } from "../../utils/constant";
 
 const ResMenuCard = () => {
   const [resInfo, setResInfo] = useState(null);
+  const [resMenu, setResMenu] = useState([]);
   const { resId } = useParams();
 
   useEffect(() => {
     const fetchRestaurantmenu = async () => {
       try {
-        const response = await fetch(`${MENU_API}${resId}`);
+        const response = await fetch(MENU_API);
         const json = await response.json();
 
-        // const MenuData
-        console.log(
-          json?.data?.cards
-            .find((obj) => obj?.groupedCard)
-            ?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((obj) =>
-              obj?.card?.card["@type"]?.includes("ItemCategory")
-            )
-        );
+        const menuData = json?.data?.cards
+          .find((obj) => obj?.groupedCard)
+          ?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((obj) =>
+            obj?.card?.card["@type"]?.includes("ItemCategory")
+          );
 
-        const restaurantCard = json?.data?.cards.find((item) =>
-          item?.card?.card["@type"]?.includes("food.v2.Restaurant")
-        );
+        console.log(menuData);
 
-        setResInfo(restaurantCard?.card?.card?.info);
+        const organisedMenuData = menuData?.map((item) => {
+          const type = item?.card?.card["@type"];
+          const title = item?.card?.card?.title;
+          const itemCards = item?.card?.card?.itemCards || [];
+
+          if (type?.includes("ItemCategory")) {
+            return {
+              title,
+              type: item,
+              itemCards,
+            };
+          }
+        });
+        console.log(organisedMenuData);
+
+        setResInfo(
+          json?.data?.cards.find((obj) =>
+            obj?.card?.card["@type"]?.includes("food.v2.Restaurant")
+          )?.card?.card?.info || []
+        );
+        setResMenu(organisedMenuData);
       } catch (err) {
         console.log("So SORRY Data is Not Present ❌");
       }
@@ -40,27 +56,49 @@ const ResMenuCard = () => {
     return <ShimmerUI />;
   }
 
-  const { name, cuisines, costForTwoMessage, locality, avgRating } = resInfo;
-  return (
-    <div className="menu">
-      <h2>Menu</h2>
-      <h1>{name}</h1>
-      <p>
-        {cuisines} - {costForTwoMessage}
-      </p>
-      <p>locality : {locality}</p>
-      <p>AvgRating : {avgRating}</p>
+  //destructuring ---------------
+  const { name, cuisines, costForTwoMessage } = resInfo;
 
-      {/* <ul>
-        {itemCards.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} - {"Rs."}
-            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-          </li>
-        ))}
-      </ul> */}
+  return (
+    <div>
+      <div className="text-center">
+        <h2>Menu</h2>
+        <h1 className="font-bold my-6 text-2xl">{name}</h1>
+        <p className="text-sm font-bold">
+          {cuisines} - {costForTwoMessage}
+        </p>
+      </div>
+      {resMenu?.map((obj) =>
+        obj?.type?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ? (
+          <ItemCategory key={obj.title} data={obj} />
+        ) : (
+          []
+        )
+      )}
     </div>
   );
 };
 
+const ItemCategory = (props) => {
+  console.log(props);
+  const { title, itemCards } = props?.data;
+
+  return (
+    <div>
+      <h1>{title}</h1>
+      <ul>
+        {itemCards.map((item) => {
+          <Menuitem menuInfo={item?.card?.info} />;
+        })}
+        <li></li>
+      </ul>
+    </div>
+  );
+};
+
+const Menuitem = (props) => {
+  console.log(props);
+  return <div></div>;
+};
 export default ResMenuCard;
