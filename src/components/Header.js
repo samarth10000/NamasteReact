@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { LOGO_URL } from "../../utils/constant";
 import { Link } from "react-router-dom";
 import useonlineStatus from "../../utils/useOnlineStatus";
+import UserContext from "../../utils/UserContext";
 
 const Header = () => {
   const [button, setButton] = useState("login");
   const onlineStatus = useonlineStatus();
+  const Data = useContext(UserContext);
 
   useEffect(() => {
     console.log("Header button state updated:", button);
