@@ -1,7 +1,10 @@
 import { CDN_URL } from "../../utils/constant";
+import { useContext } from "react";
+import UserContext from "../../utils/UserContext";
 
 const RestaurantCard = (props) => {
   const { resdata } = props;
+  const { LoggedInUser } = useContext(UserContext);
 
   if (!resdata || !resdata.info) return null; // or show a loading/error component
 
@@ -23,6 +26,7 @@ const RestaurantCard = (props) => {
         <div className="flex items-center justify-between text-sm text-gray-700">
           <span className="font-medium">{avgRating}⭐</span>
           <span>{costForTwo}</span>
+          <div>{LoggedInUser}</div>
         </div>
       </div>
     </div>

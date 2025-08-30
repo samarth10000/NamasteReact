@@ -7,7 +7,8 @@ import UserContext from "../../utils/UserContext";
 const Header = () => {
   const [button, setButton] = useState("login");
   const onlineStatus = useonlineStatus();
-  const Data = useContext(UserContext);
+  //this is the example for Global Context
+  const { LoggedInUser, setUser } = useContext(UserContext);
 
   useEffect(() => {
     console.log("Header button state updated:", button);
@@ -74,6 +75,12 @@ const Header = () => {
             className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg text-sm font-semibold shadow-sm transition"
           >
             {button}
+          </button>
+          <button
+            className="px-4 font-bold"
+            onClick={() => setUser("New User")}
+          >
+            Change User
           </button>
         </div>
       </div>
